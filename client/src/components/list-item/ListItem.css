@@ -1,0 +1,55 @@
+.party {
+    width: 100%;
+    padding: 10px 8px;
+    border-top: 1px solid #eee;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.party:nth-child(odd) {
+    background-color: #eee;
+}
+
+.party-details {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.party-logo {
+    height: 65px;
+    width: 65px;
+}
+
+.candi-detail {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.party-name {
+    font-size: 14px;
+    color: #888;
+    font-weight: 700;
+}
+
+.candidate-name {
+    color: #404040;
+    font-size: 22px;
+}
+
+.party-vote {
+    background-color: #8EE26B;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 750;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+}
