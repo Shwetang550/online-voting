@@ -6,18 +6,31 @@ import './VoteScreen.css'
 
 import ListItem from '../../components/list-item/ListItem';
 
-import { parties } from '../../partiesList';
+// import { parties } from '../../partiesList';
+import { useEffect } from 'react';
+import { getParties } from '../../services/api';
 
-const VoteScreen = () => {
+const VoteScreen = ({ voterID }) => {
     const [vote, setVote] = useState(false);
+    const [parties, setParties] = useState([]);
+    const [voterPhoto, setVoterPhoto] = useState();
 
-    const handleVote = () => setVote(true);
+    useEffect(() => { 
+        const getData = async () => { 
+            await getParties()
+                .then(res => setParties(res.data))
+                .catch(err => console.log(err));
+        };
+        getData();
+    }, []);
+
     return (
         <div className='vote'>
           
             <div className='vote-photo'>
                 <WebcamComponent
                     onVote={vote}
+                    handleVoterPhoto={(e) => setVoterPhoto(e)}
                 />
             </div>
 
@@ -26,11 +39,14 @@ const VoteScreen = () => {
             <div className='vote-body'>
                 {parties.map(i => (
                     <ListItem
-                        key={i.id}
-                        logo={i.logo}
-                        name={i.name}
-                        candidate={i.candidate}
-                        handleVote={handleVote}
+                        key={i._id}
+                        id={i._id}
+                        // logo={i.logo}
+                        name={i.party_name}
+                        candidate={i.candidate_name}
+                        onVote={() => setVote(true)}
+                        voterID={voterID}
+                        voterPhoto={voterPhoto}
                     />
                 ))}
             </div>

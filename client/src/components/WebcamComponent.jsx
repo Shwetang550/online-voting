@@ -7,7 +7,7 @@ const videoConstraints = {
   facingMode: "user"
 };
 
-const WebcamComponent = ({onVote = false}) => {
+const WebcamComponent = ({onVote = false, handleVoterPhoto}) => {
     return (
         <Webcam
             audio={false}
@@ -19,7 +19,8 @@ const WebcamComponent = ({onVote = false}) => {
             {
                 onVote ? ({ getScreenshot }) => {
                     const image = getScreenshot();
-                    console.log('voted' ,image)
+                    // console.log('voted' ,image)
+                    handleVoterPhoto(image);
                 } : alert('Please allow access to front camera')
             }
         </Webcam>

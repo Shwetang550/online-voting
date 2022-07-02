@@ -3,18 +3,16 @@
     width: 100vw;
 
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     justify-content: flex-start;
 }
 
 .vote-photo {
-    height: 35%;
-    width: 100%;
+    flex: 1;
     background-color: rgb(103, 103, 103);
 
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -33,4 +31,10 @@
     text-align: center;
 
     margin: 5vh auto;
+}
+
+@media only screen and (max-width: 1440px) {
+    .vote {
+        flex-direction: column;
+    }
 }

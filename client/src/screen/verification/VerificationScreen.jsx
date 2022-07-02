@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './VerificationScreen.css'
 
 // logo
 import Logo from '../../assets/vote.png';
 import { useNavigate } from 'react-router-dom';
 
-const VerificationScreen = () => {
+import { voters } from '../../votersList';
+
+const VerificationScreen = ({voterID, handleVoterID}) => {
+
     const navigate = useNavigate();
 
     const handleSubmit = () => { 
-        navigate('/cast-vote')
+        const voter = voters.filter(i => i.voter_id === voterID);
+
+        if (voter[0].voted) {
+            navigate('/voted')
+        } else {
+            navigate('/cast-vote')
+        }
     };
 
     return (
@@ -24,6 +33,8 @@ const VerificationScreen = () => {
                 <input
                     className='verify-input'
                     placeholder='enter voter id here...'
+                    value={voterID}
+                    onChange={(event) => handleVoterID(event)}
                 />
                 <button className='verify-btn' onClick={handleSubmit}>Submit</button>
             </div>
